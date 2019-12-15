@@ -8,13 +8,20 @@ app = Flask(__name__) #create an instance of this and store it in a variable cal
 def index():
     return render_template("index.html")
 
-@app.route('/about') #every time we click on about (in the html file in the <a href="/about">) the function will be called
+@app.route('/about') #every time we click on about (in the html file in the <a href="/about">) the function will be called. 
+#The /about is the part at the end of the URL https://5000-b6f190f4-42e4-44aa-af61-84dae5b4a63a.ws-eu01.gitpod.io/about
 def about():
     return render_template("about.html")
 
-@app.route('/contact')
+@app.route('/contact')  #every time we click on about (in the html file in the <a href="/contact">) the function will be called. 
+#The /about is the part at the end of the URL https://5000-b6f190f4-42e4-44aa-af61-84dae5b4a63a.ws-eu01.gitpod.io/contact
 def contact():
     return render_template('contact.html')
+
+@app.route('/career')  #every time we click on about (in the html file in the <a href="/career">) the function will be called. 
+#The /about is the part at the end of the URL https://5000-b6f190f4-42e4-44aa-af61-84dae5b4a63a.ws-eu01.gitpod.io/career
+def career():
+    return render_template('career.html')
 
 if __name__ == "__main__": #__name__ is the name of the default module on python. is the first one that we run
     app.run(host=os.environ.get("IP"),
