@@ -13,8 +13,8 @@ def index():
 #The /about is the part at the end of the URL https://5000-b6f190f4-42e4-44aa-af61-84dae5b4a63a.ws-eu01.gitpod.io/about
 def about():
     data = []
-    with open('data/company.json', 'r') as json_data # 'r' stays for 'reading'
-    data = json.load(json_data)
+    with open("Flask/data/company.json", "r") as json_data: #'r' stays for reading
+        data = json.load(json_data)
     return render_template("about.html", page_title="About", company=data) #in order to creat a for loop put this code inside the return() company=data list_of_number = [1, 2, 3]
 
 @app.route('/contact')  #every time we click on about (in the html file in the <a href="/contact">) the function will be called. 

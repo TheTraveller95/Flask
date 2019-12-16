@@ -1,7 +1,7 @@
 {% extends 'base.html' %} <!---this inherit the code from base.html and insert the h1 in it-->
 {% block content %}
 
-    {{ company }}
+    {{ company[0]['name'] }}
 
     <!---{% for number in list_of_number %}
         <p>{{ number }}</p>
