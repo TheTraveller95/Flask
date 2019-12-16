@@ -1,8 +1,6 @@
 {% extends 'base.html' %} <!---this inherit the code from base.html and insert the h1 in it-->
 {% block content %}
 
-    {{ company[0]['name'] }}
-
     <!---{% for number in list_of_number %}
         <p>{{ number }}</p>
     {% endfor %} example of how a for loop can be created from the backend to the frontend--->
@@ -15,33 +13,47 @@
         sometimes prideful and stubborn Dwarves from rash action. The superstitious Dwarves also considered thirteen to be an unlucky number, 
         and as Gandalf had planned to leave on other business, welcomed a fourteenth to fill into their party
     </p>
+
+    <hr class="featurette-divider">
+
+    {% for member in company %} <!---creating the for loop automatically create a "loop" object which has a property "index"-->
+
     <div class="row featurette">
+
+        {% if loop.index % 2 !=0 %} <!--if the number of loop.index is divisible by 2 ... -->
+
         <div class="col-md-7">
-            <h3>Thorin Oakenshield</h3>
+            <h3>{{ loop.index }}{{ member.name }}</h3>
             <p>
-                In the year TA 2746, Thorin II was born to Dwarven prince Thráin II in the mountain city of The Lonely Mountain. 
-                Early in his youth, he and the other Dwarves of the Lonely Mountain were forced to flee by the dragon Smaug in TA 2770. 
-                While in exile, he quickly grew to become a capable warrior. This was demonstrated when he participated in the Battle of 
-                Azanulbizar in TA 2799. He marched with one of the Dwarven armies beneath the East-gate of Moria. At some point in the 
-                fighting, his shield broke, and using an oaken tree branch found on the floor as a shield, he gained the epithet 
-                "Oakenshield," which would remain with him even in death.
+                {{ member.description }}
             </p>
         </div>
         <div class="col-md-5">
-            <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Thorin%2C_from_the_Hobbit.jpg" alt="thorin photo">
+            <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="thorin photo">
         </div>
-    </div>
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img src="https://vignette.wikia.nocookie.net/lotr/images/b/b4/The-Hobbit-Fili-and-Kili.jpg/revision/latest?cb=20110714202952" alt="Fili and kili photo">
+
+        {% else %}
+
+         <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="thorin photo">
         </div>
         <div class="col-md-7">
-            <h3>Fili and Kili</h3>
+            <h3>{{ loop.index }}{{ member.name }}</h3>
             <p>
-                Fíli and Kíli were nephews of Thorin, who was the elder brother of their mother Dís. They were also nephews of Frerin, 
-                grandsons of Thráin II, and great-grandsons of Thror. Fíli's most distinguishing feature was his long nose, the longest 
-                of any of the Dwarves on the Quest of Erebor.
+                {{ member.description }}
             </p>
         </div>
+
+        {% endif %}
+
     </div>
+
+    {% if loop.index != 13 %}
+
+    <hr class="featurette-divider">
+
+    {% endif %}
+
+    {% endfor %}
+    
 {% endblock %}
