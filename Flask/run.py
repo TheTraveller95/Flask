@@ -17,7 +17,17 @@ def about():
         data = json.load(json_data)
     return render_template("about.html", page_title="About", company=data) #in order to creat a for loop put this code inside the return() company=data list_of_number = [1, 2, 3]
 
-@app.route('/contact')  #every time we click on about (in the html file in the <a href="/contact">) the function will be called. 
+@app.route('/about/<member_name>')
+def about_member(member_name):
+    member={} #empty object
+    with open("Flask/data/company.json", "r") as json_data:
+        data = json.load(json_data)
+        for obj in data: #for loop inside company.json
+            if obj['url']==member_name: # if the url in the obj in company.json = member_name(que es la ultima parte del url) so the empty object called member = obj
+                member = obj
+    return render_template('member.html', member=member)
+
+@app.route('/contact', methods=['GET', 'POST'])  #every time we click on about (in the html file in the <a href="/contact">) the function will be called. 
 #The /about is the part at the end of the URL https://5000-b6f190f4-42e4-44aa-af61-84dae5b4a63a.ws-eu01.gitpod.io/contact
 def contact():
     return render_template('contact.html', page_title="Contact")
